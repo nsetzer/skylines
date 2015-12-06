@@ -28,12 +28,12 @@ func SolveNaive(buildings Buildings) (points []CriticalPoint) {
 	last_height := 0
 	for i, h := range skyline {
 		if h < last_height {
-			points = append(points, CriticalPoint{X:i - 1, Y:h})
+			points = append(points, CriticalPoint{X: i - 1, Y: h})
 		} else if h > last_height {
-			points = append(points, CriticalPoint{X:i, Y:h})
+			points = append(points, CriticalPoint{X: i, Y: h})
 		}
 		last_height = h
 	}
-	points = append(points, CriticalPoint{X:width, Y:0})
+	points = append(points, CriticalPoint{X: width, Y: 0})
 	return
 }
