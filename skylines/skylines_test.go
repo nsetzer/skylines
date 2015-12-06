@@ -50,7 +50,6 @@ func TestCriticalPointMaxHeap(t *testing.T) {
 	heap.Push(&hq, &CriticalPoint{X: 3, Y: 7})
 	testHeapHeight(t, &hq, 7)
 
-
 	heap.Pop(&hq)
 	testHeapHeight(t, &hq, 5)
 
@@ -129,7 +128,6 @@ func TestNaiveSimple(t *testing.T) {
 func TestNaiveHard(t *testing.T) {
 	testHard(SolveNaive, t)
 }
-
 
 func TestFastSimple(t *testing.T) {
 	testSimple(SolveFast, t)

@@ -15,6 +15,7 @@ type Buildings []Building
 func (b Buildings) Len() int {
 	return len(b)
 }
+
 // Return true if the left edge of building at index i
 // comes before the left edge of building at index j
 func (b Buildings) Less(i, j int) bool {
@@ -26,8 +27,8 @@ func (b Buildings) Swap(i, j int) {
 
 // A CriticalPoint is a region on the skyline where the height changes.
 type CriticalPoint struct {
-	X     int
-	Y     int
+	X int
+	Y int
 }
 
 type CriticalPoints []*CriticalPoint
