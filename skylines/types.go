@@ -9,11 +9,14 @@ type Building struct {
 	Height int
 }
 
+// type used to enable sorting a set of buildings
 type Buildings []Building
 
 func (b Buildings) Len() int {
 	return len(b)
 }
+// Return true if the left edge of building at index i
+// comes before the left edge of building at index j
 func (b Buildings) Less(i, j int) bool {
 	return b[i].Left < b[j].Left
 }
