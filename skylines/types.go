@@ -9,6 +9,18 @@ type Building struct {
 	Height int
 }
 
+type Buildings []Building
+
+func (b Buildings) Len() int {
+	return len(b)
+}
+func (b Buildings) Less(i, j int) bool {
+	return b[i].Left < b[j].Left
+}
+func (b Buildings) Swap(i, j int) {
+	b[i], b[j] = b[j], b[i]
+}
+
 // A CriticalPoint is a region on the skyline where the height changes.
 type CriticalPoint struct {
 	X int
@@ -16,7 +28,7 @@ type CriticalPoint struct {
 }
 
 // Function Signature for a funciton that can solve the skylines problem
-type Solver func([]Building) []CriticalPoint
+type Solver func(Buildings) []CriticalPoint
 
 func (p CriticalPoint) String() string {
 	return fmt.Sprintf("CriticalPoint(%d,%d)", p.X, p.Y)

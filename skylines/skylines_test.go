@@ -1,6 +1,25 @@
 package skylines
 
 import "testing"
+import "sort"
+
+// Show that buildings can be sorted by left edge
+func TestSortBuildings( t *testing.T) {
+	buildings := Buildings{
+		{5, 12, 12},
+		{2, 9, 10},
+		{3, 7, 15}}
+
+	sort.Sort(buildings)
+
+	expected_order := []int{2,3,5}
+
+	for i,v := range expected_order {
+		if buildings[i].Left != v {
+			t.Errorf("call to sort failed at index %d.",i);
+		}
+	}
+}
 
 // Provide a single building and show
 // that the correct critical points are returned.
@@ -8,7 +27,7 @@ func testSimple(solver_func Solver, t *testing.T) {
 
 	height := 5
 	width := 4
-	buildings := []Building{{0, width, height}}
+	buildings := Buildings{{0, width, height}}
 
 	points := solver_func(buildings)
 
@@ -40,7 +59,7 @@ func testHard(solver_func Solver, t *testing.T) {
 		{15, 10},
 		{20, 8},
 		{24, 0}}
-	buildings := []Building{
+	buildings := Buildings{
 		{5, 12, 12},
 		{2, 9, 10},
 		{3, 7, 15},
