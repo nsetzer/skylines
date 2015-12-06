@@ -25,6 +25,48 @@ func (b Buildings) Swap(i, j int) {
 type CriticalPoint struct {
 	X int
 	Y int
+	index int // needed by heap interface
+}
+
+type CriticalPoints []*CriticalPoint
+
+func (c CriticalPoints) Len() int {
+	return len(c)
+}
+func (c CriticalPoints) Less(i, j int) bool {
+	// use greater to form a priority queue
+	return c[i].Y > c[j].Y
+}
+func (c CriticalPoints) Swap(i, j int) {
+	c[i], c[j] = c[j], c[i]
+}
+
+func (c *CriticalPoints) Push(x interface{}) {
+	n := len(*c)
+	item := x.(*CriticalPoint)
+	item.index = n
+	*c = append(*c, item)
+}
+
+func (c *CriticalPoints) Pop() interface{} {
+	old := *c
+	n := len(old)
+	item := old[n-1]
+	item.index = -1 // for safety
+	*c = old[0 : n-1]
+	return item
+}
+
+func (c *CriticalPoints) Peak() interface{} {
+	old := *c
+	return old[0]
+}
+
+func (c *CriticalPoints) Max() int {
+	if len(*c) == 0 {
+		return 0;
+	}
+	return c.Peak().(*CriticalPoint).Y
 }
 
 // Function Signature for a funciton that can solve the skylines problem
